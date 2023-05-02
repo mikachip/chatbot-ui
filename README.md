@@ -1,3 +1,11 @@
+# Fork details
+
+**Changes**
+- Merge token + price count PR
+- Update token cap logic to always allow maximum download
+
+# See below for original readme
+
 # Chatbot UI
 
 Chatbot UI is an open source chat UI for AI models.
