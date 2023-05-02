@@ -20,6 +20,7 @@ import { VariableModal } from './VariableModal';
 interface Props {
   conversation: Conversation;
   prompts: Prompt[];
+  lastSystemPrompt: string;
   onChangePrompt: (prompt: string) => void;
 }
 
@@ -170,7 +171,6 @@ export const SystemPrompt: FC<Props> = ({
     if (conversation.prompt) {
       setValue(conversation.prompt);
     } else {
-      const lastSystemPrompt = localStorage.getItem('lastSystemPrompt');
       if (lastSystemPrompt) {
         setValue(lastSystemPrompt);
         onChangePrompt(lastSystemPrompt);
@@ -178,7 +178,7 @@ export const SystemPrompt: FC<Props> = ({
         setValue(DEFAULT_SYSTEM_PROMPT);
       }
     }
-  }, [conversation]);
+  }, [conversation, lastSystemPrompt]);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {

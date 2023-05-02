@@ -67,6 +67,10 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  const [lastSystemPrompt, setLastSystemPrompt] = useState<string>(
+    localStorage.getItem('lastSystemPrompt') || '',
+  );
+
   const handleUpdateConversation = useCallback(
     (conversation: Conversation, update: { key: string; value: any }) => {
       const updatedConversation = {
@@ -74,6 +78,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
         [update.key]: update.value,
       };
       if (update.key === 'prompt') {
+        setLastSystemPrompt(update.value);
         localStorage.setItem('lastSystemPrompt', update.value);
       }
       homeDispatch({
@@ -84,7 +89,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
     },
     [],
   );
-  
+
   const handleSend = useCallback(
     async (message: Message, deleteCount = 0, plugin: Plugin | null = null) => {
       if (selectedConversation) {
@@ -433,6 +438,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                       <SystemPrompt
                         conversation={selectedConversation}
                         prompts={prompts}
+                        lastSystemPrompt={lastSystemPrompt}
                         onChangePrompt={(prompt) =>
                           handleUpdateConversation(selectedConversation, {
                             key: 'prompt',
