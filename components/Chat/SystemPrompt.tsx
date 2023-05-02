@@ -170,7 +170,13 @@ export const SystemPrompt: FC<Props> = ({
     if (conversation.prompt) {
       setValue(conversation.prompt);
     } else {
-      setValue(DEFAULT_SYSTEM_PROMPT);
+      const lastSystemPrompt = localStorage.getItem('lastSystemPrompt');
+      if (lastSystemPrompt) {
+        setValue(lastSystemPrompt);
+        onChangePrompt(lastSystemPrompt);
+      } else {
+        setValue(DEFAULT_SYSTEM_PROMPT);
+      }
     }
   }, [conversation]);
 

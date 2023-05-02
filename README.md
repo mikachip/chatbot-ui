@@ -3,6 +3,7 @@
 **Changes**
 - Merge token + price count PR
 - Update token cap logic to always allow maximum download
+- System prompt from last conversation is default for new conversation
 
 # See below for original readme
 
