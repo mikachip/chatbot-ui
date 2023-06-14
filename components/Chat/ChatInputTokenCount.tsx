@@ -9,8 +9,10 @@ import BigNumber from 'bignumber.js';
 
 const PRICING: Record<string, BigNumber> = {
   'gpt-4': BigNumber('0.03').div(1000),
+  'gpt-4-0613': BigNumber('0.03').div(1000),
   'gpt-4-32k': BigNumber('0.03').div(1000),
   'gpt-3.5-turbo': BigNumber('0.002').div(1000),
+  'gpt-3.5-turbo-16k': BigNumber('0.002').div(1000),
 };
 
 export function ChatInputTokenCount(props: { content: string | undefined }) {

@@ -79,7 +79,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
       };
       if (update.key === 'prompt') {
         setLastSystemPrompt(update.value);
-        localStorage.setItem('lastSystemPrompt', update.value);
+        localStorage.setItem('lastSystemPrompt', update.value); // Save the lastSystemPrompt in local storage
       }
       homeDispatch({
         field: 'selectedConversation',
@@ -88,7 +88,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
       saveConversation(updatedConversation);
     },
     [],
-  );
+  );  
 
   const handleSend = useCallback(
     async (message: Message, deleteCount = 0, plugin: Plugin | null = null) => {
@@ -436,16 +436,17 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                       <ModelSelect />
 
                       <SystemPrompt
-                        conversation={selectedConversation}
-                        prompts={prompts}
-                        lastSystemPrompt={lastSystemPrompt}
-                        onChangePrompt={(prompt) =>
-                          handleUpdateConversation(selectedConversation, {
-                            key: 'prompt',
-                            value: prompt,
-                          })
-                        }
-                      />
+                      conversation={selectedConversation}
+                      prompts={prompts}
+                      lastSystemPrompt={lastSystemPrompt} // Make sure this line is present
+                      onChangePrompt={(prompt) =>
+                        handleUpdateConversation(selectedConversation, {
+                          key: 'prompt',
+                          value: prompt,
+                        })
+                      }
+                    />
+
 
                       <TemperatureSlider
                         label={t('Temperature')}

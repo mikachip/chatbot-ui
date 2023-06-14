@@ -20,7 +20,7 @@ import { VariableModal } from './VariableModal';
 interface Props {
   conversation: Conversation;
   prompts: Prompt[];
-  lastSystemPrompt: string;
+  lastSystemPrompt: string; // Add this line
   onChangePrompt: (prompt: string) => void;
 }
 
@@ -28,6 +28,7 @@ export const SystemPrompt: FC<Props> = ({
   conversation,
   prompts,
   onChangePrompt,
+  lastSystemPrompt, 
 }) => {
   const { t } = useTranslation('chat');
 
@@ -171,14 +172,14 @@ export const SystemPrompt: FC<Props> = ({
     if (conversation.prompt) {
       setValue(conversation.prompt);
     } else {
-      if (lastSystemPrompt) {
+      if (lastSystemPrompt && lastSystemPrompt.trim() !== '') {
         setValue(lastSystemPrompt);
         onChangePrompt(lastSystemPrompt);
       } else {
         setValue(DEFAULT_SYSTEM_PROMPT);
       }
     }
-  }, [conversation, lastSystemPrompt]);
+  }, [conversation, lastSystemPrompt]);  
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
