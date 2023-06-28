@@ -391,11 +391,11 @@ export const ChatInput = ({
           rel="noreferrer"
           className="underline"
         >
-          ChatBot UI
+          ChatBotUI
         </a>
         .{' '}
         {t(
-          "Chatbot UI is an open source chatbot kit. This is a fork of the original github.",
+          "ChatbotUI is an open source chatbot kit. This is a fork of the original github with added features.",
         )}
       </div>
     </div>
