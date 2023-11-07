@@ -4,6 +4,7 @@
 - Merge token + price count PR
 - Update token cap logic to always allow maximum download
 - System prompt from last conversation is default for new conversation
+- Locked to 3.3.0 OpenAI
 
 # See below for original readme
 
